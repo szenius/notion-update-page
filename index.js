@@ -10,6 +10,15 @@ const getGitHubRequestHeaders = (username, accessToken) => ({
   headers: { Authorization: `Basic ${btoa(`${username}:${accessToken}`)}` },
 });
 
+const fetchPRDescription = async (prURL, username, accessToken) => {
+  const response = await axios.get(
+    prURL,
+    getGitHubRequestHeaders(username, accessToken)
+  );
+  const { base } = response.data;
+  return base.repo.description;
+};
+
 const fetchPRURL = async (
   commitHash,
   username,
@@ -17,11 +26,11 @@ const fetchPRURL = async (
   repoOwner,
   repoName
 ) => {
-  const issuesResponse = await axios.get(
+  const response = await axios.get(
     `https://api.github.com/search/issues?q=hash:${commitHash}`,
     getGitHubRequestHeaders(username, accessToken)
   );
-  const { items: issues } = await issuesResponse.data;
+  const { items: issues } = response.data;
 
   const prURLRegex = new RegExp(
     `https://api.github.com/repos/${repoOwner}/${repoName}/pulls/[0-9]+`
@@ -53,7 +62,8 @@ const run = async () => {
     repoOwner,
     repoName
   );
-  console.log(prURL);
+  const prDescription = await fetchPRDescription(prURL, username, accessToken);
+  console.log(prDescription);
 };
 
 run();

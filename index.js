@@ -32,20 +32,28 @@ const fetchPRURL = async (
   return pull_request.url;
 };
 
-const isOffline = process.env.NODE_ENV === "offline";
-const commitHash = isOffline ? process.env.COMMIT_HASH : github.context.sha;
-const repoOwner = isOffline
-  ? process.env.REPO_OWNER
-  : github.context.repo.owner;
-const repoName = isOffline ? process.env.REPO_NAME : github.context.repo.repo;
-const username = process.env.GH_USERNAME;
-const accessToken = process.env.GH_ACCESS_TOKEN;
+const getConfig = () => {
+  const isOffline = process.env.NODE_ENV === "offline";
+  return {
+    commitHash: isOffline ? process.env.COMMIT_HASH : github.context.sha,
+    repoOwner: isOffline ? process.env.REPO_OWNER : github.context.repo.owner,
+    repoName: isOffline ? process.env.REPO_NAME : github.context.repo.repo,
+    username: process.env.GH_USERNAME,
+    accessToken: process.env.GH_ACCESS_TOKEN,
+  };
+};
 
-const prURL = await fetchPRURL(
-  commitHash,
-  username,
-  accessToken,
-  repoOwner,
-  repoName
-);
-console.log(prURL);
+const run = async () => {
+  const { commitHash, repoOwner, repoName, username, accessToken } =
+    getConfig();
+  const prURL = await fetchPRURL(
+    commitHash,
+    username,
+    accessToken,
+    repoOwner,
+    repoName
+  );
+  console.log(prURL);
+};
+
+run();

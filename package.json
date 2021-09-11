@@ -1,0 +1,27 @@
+{
+  "name": "notion-on-commit",
+  "description": "POC for updating a Notion database item on every Github commit. The goal is to link up each commit to a Notion database item.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=offline node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/szenius/notion-on-commit.git"
+  },
+  "author": "Sze Ying",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/szenius/notion-on-commit/issues"
+  },
+  "homepage": "https://github.com/szenius/notion-on-commit#readme",
+  "dependencies": {
+    "@actions/core": "^1.5.0",
+    "@actions/github": "^5.0.0",
+    "axios": "^0.21.4",
+    "btoa": "^1.2.1",
+    "dotenv": "^10.0.0"
+  },
+  "type": "module"
+}

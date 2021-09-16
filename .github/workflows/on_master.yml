@@ -19,4 +19,4 @@ jobs:
           gh-token: ${{ secrets.GH_ACCESS_TOKEN }}
           notion-key: ${{ secrets.NOTION_KEY }}
           notion-property-name: "Commit"
-          notion-update-value: ${ GITHUB_SHA }
+          notion-update-value: $GITHUB_SHA

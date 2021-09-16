@@ -121,12 +121,14 @@ const run = async () => {
     );
     prDescription = await fetchPRDescription(prURL, username, accessToken);
   } catch (error) {
-    core.error(`Error fetch PR description with hash ${commitHash}: ${error}`);
+    core.setFailed(
+      `Error fetch PR description with hash ${commitHash}: ${error}`
+    );
   }
 
   const notionPageId = extractFirstNotionPageId(prDescription);
   if (notionPageId === null) {
-    core.error("No Notion URL found.");
+    core.setFailed("No Notion URL found.");
   }
 
   try {
@@ -137,10 +139,10 @@ const run = async () => {
       notionUpdateValue
     );
   } catch (error) {
-    core.error(`Error updating Notion page ${notionPageId}: ${error}`);
+    core.setFailed(`Error updating Notion page ${notionPageId}: ${error}`);
   }
 
-  core.info(
+  console.info(
     `Updated Notion page ${notionPageId} | ${notionPropertyName}: ${notionUpdateValue}`
   );
 };

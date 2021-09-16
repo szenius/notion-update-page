@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=offline node index.js",
-    "build": "ncc build index.js --license licenses.txt"
+    "build": "npx ncc build index.js --license licenses.txt"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,8 @@
     "axios": "^0.21.4",
     "btoa": "^1.2.1",
     "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.31.1"
   }
 }

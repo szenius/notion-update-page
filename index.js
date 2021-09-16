@@ -62,6 +62,10 @@ const fetchPRURL = async (
   );
   const { items: issues } = response.data;
 
+  if (issues === null || issues.length === 0) {
+    return null;
+  }
+
   const prURLRegex = new RegExp(
     `https://api.github.com/repos/${repoOwner}/${repoName}/pulls/[0-9]+`
   );
@@ -118,6 +122,13 @@ const run = async () => {
       repoOwner,
       repoName
     );
+
+    if (prURL === null) {
+      core.setFailed(
+        `Error get PR URL for hash ${commitHash}. Commit may not be created by merging a PR.`
+      );
+    }
+
     prDescription = await fetchPRDescription(prURL, username, accessToken);
   } catch (error) {
     core.setFailed(

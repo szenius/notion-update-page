@@ -1,5 +1,7 @@
 # Notion on commit
 
+![Test Action](https://github.com/szenius/notion-on-commit/workflows/.github/workflows/action.yml/badge.svg)
+
 GitHub action to update a Notion page property on commit created by merging a Pull Request.
 
 ## Example Usage

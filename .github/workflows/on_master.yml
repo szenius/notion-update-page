@@ -1,0 +1,22 @@
+name: on master
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  update_notion_property:
+    runs-on: ubuntu-latest
+    name: Update Notion property
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Update Notion property
+        uses: ./
+        with:
+          gh-username: "szenius"
+          gh-token: ${{ secrets.GH_ACCESS_TOKEN }}
+          notion-key: ${{ secrets.NOTION_KEY }}
+          notion-property-name: "Status"
+          notion-update-value: "Merged"

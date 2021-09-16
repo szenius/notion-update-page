@@ -17,10 +17,9 @@ jobs:
         uses: anothrNick/github-tag-action@1.35.0
         env:
           GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
-          WITH_V: true
+          WITH_V: false
           RELEASE_BRANCHES: master
           DEFAULT_BUMP: patch
-          INITIAL_VERSION: v1.1.0
       - name: Update Notion property
         uses: ./
         with:
@@ -28,4 +27,4 @@ jobs:
           gh-token: ${{ secrets.GH_ACCESS_TOKEN }}
           notion-key: ${{ secrets.NOTION_KEY }}
           notion-property-name: "Version Tag"
-          notion-update-value: ${{ steps.version.outputs.new_tag }}
+          notion-update-value: "${{ steps.version.outputs.new_tag }}"

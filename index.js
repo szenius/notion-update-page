@@ -80,9 +80,13 @@ const getConfig = () => {
     repoName: isOffline ? process.env.REPO_NAME : github.context.repo.repo,
     username: process.env.GH_USERNAME,
     accessToken: process.env.GH_ACCESS_TOKEN,
-    notionKey: process.env.NOTION_KEY,
-    notionPropertyName: process.env.NOTION_PROPERTY_NAME,
-    notionUpdateValue: process.env.NOTION_UPDATE_VALUE,
+    notionKey: isOffline ? process.env.NOTION_KEY : core.getInput("notion-key"),
+    notionPropertyName: isOffline
+      ? process.env.NOTION_PROPERTY_NAME
+      : core.getInput("property-name"),
+    notionUpdateValue: isOffline
+      ? process.env.NOTION_UPDATE_VALUE
+      : core.getInput("update-value"),
   };
 };
 

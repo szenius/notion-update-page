@@ -1,0 +1,15 @@
+name: "Notion On Commit"
+description: "Update page property on commit"
+inputs:
+  notion-key: # id of input
+    description: "Notion Integration Secret Key"
+    required: true
+  property-name: # id of input
+    description: "Page property to be updated"
+    required: true
+  update-value: # id of input
+    description: "New value for page property"
+    required: true
+runs:
+  using: "node12"
+  main: "index.js"

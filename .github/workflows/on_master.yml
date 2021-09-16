@@ -28,4 +28,4 @@ jobs:
           gh-token: ${{ secrets.GH_ACCESS_TOKEN }}
           notion-key: ${{ secrets.NOTION_KEY }}
           notion-property-name: "Version Tag"
-          notion-update-value: ${{ steps.version.outputs.new_tag }}
+          notion-update-value: "${{ steps.version.outputs.new_tag }}"

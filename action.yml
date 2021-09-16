@@ -1,5 +1,8 @@
 name: "Notion On Commit"
 description: "Update page property on commit"
+branding:
+  icon: book-open
+  color: white
 inputs:
   gh-username:
     description: "GitHub username of user who has access to the repository"

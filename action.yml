@@ -11,10 +11,10 @@ inputs:
     description: "Notion Integration Secret Key"
     required: true
   notion-property-name:
-    description: "Page property to be updated"
+    description: "Notion Page property to be updated"
     required: true
   notion-update-value:
-    description: "New value for page property"
+    description: "New value for Notion page property"
     required: true
 runs:
   using: "node12"

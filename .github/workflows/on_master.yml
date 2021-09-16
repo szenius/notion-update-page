@@ -20,7 +20,7 @@ jobs:
         run: |
           git config --local user.email "ting.szeying@gmail.com"
           git config --local user.name "szenius"
-          git add ./out
+          git add ./dist
           git commit -m "build: update dist files"
       - name: Push changes
         uses: ad-m/github-push-action@master

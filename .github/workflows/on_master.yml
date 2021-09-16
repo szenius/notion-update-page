@@ -12,11 +12,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Bump version and Push tag
+        id: version
+        uses: anothrNick/github-tag-action@1.35.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+          WITH_V: true
+          RELEASE_BRANCHES: master
+          DEFAULT_BUMP: patch
+          INITIAL_VERSION: v1.1
       - name: Update Notion property
         uses: ./
         with:
           gh-username: "szenius"
           gh-token: ${{ secrets.GH_ACCESS_TOKEN }}
           notion-key: ${{ secrets.NOTION_KEY }}
-          notion-property-name: "Commit"
-          notion-update-value: $GITHUB_SHA
+          notion-property-name: "Version Tag"
+          notion-update-value: ${{ steps.version.outputs.new_tag }}

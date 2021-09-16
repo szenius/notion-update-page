@@ -1,5 +1,5 @@
-import { createRequire as __WEBPACK_EXTERNAL_createRequire } from "module";
-/******/ var __webpack_modules__ = ({
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
 
 /***/ 9053:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
@@ -2070,22 +2070,21 @@ exports.isObject = isObject;
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
-var __webpack_unused_export__;
 
-__webpack_unused_export__ = ({ value: true });
-__webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = exports.KU = void 0;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.isNotionClientError = exports.RequestTimeoutError = exports.UnknownHTTPResponseError = exports.APIResponseError = exports.ClientErrorCode = exports.APIErrorCode = exports.LogLevel = exports.Client = void 0;
 var Client_1 = __nccwpck_require__(2092);
-Object.defineProperty(exports, "KU", ({ enumerable: true, get: function () { return Client_1.default; } }));
+Object.defineProperty(exports, "Client", ({ enumerable: true, get: function () { return Client_1.default; } }));
 var logging_1 = __nccwpck_require__(4142);
-__webpack_unused_export__ = ({ enumerable: true, get: function () { return logging_1.LogLevel; } });
+Object.defineProperty(exports, "LogLevel", ({ enumerable: true, get: function () { return logging_1.LogLevel; } }));
 var errors_1 = __nccwpck_require__(9929);
-__webpack_unused_export__ = ({ enumerable: true, get: function () { return errors_1.APIErrorCode; } });
-__webpack_unused_export__ = ({ enumerable: true, get: function () { return errors_1.ClientErrorCode; } });
-__webpack_unused_export__ = ({ enumerable: true, get: function () { return errors_1.APIResponseError; } });
-__webpack_unused_export__ = ({ enumerable: true, get: function () { return errors_1.UnknownHTTPResponseError; } });
-__webpack_unused_export__ = ({ enumerable: true, get: function () { return errors_1.RequestTimeoutError; } });
+Object.defineProperty(exports, "APIErrorCode", ({ enumerable: true, get: function () { return errors_1.APIErrorCode; } }));
+Object.defineProperty(exports, "ClientErrorCode", ({ enumerable: true, get: function () { return errors_1.ClientErrorCode; } }));
+Object.defineProperty(exports, "APIResponseError", ({ enumerable: true, get: function () { return errors_1.APIResponseError; } }));
+Object.defineProperty(exports, "UnknownHTTPResponseError", ({ enumerable: true, get: function () { return errors_1.UnknownHTTPResponseError; } }));
+Object.defineProperty(exports, "RequestTimeoutError", ({ enumerable: true, get: function () { return errors_1.RequestTimeoutError; } }));
 // Error helpers
-__webpack_unused_export__ = ({ enumerable: true, get: function () { return errors_1.isNotionClientError; } });
+Object.defineProperty(exports, "isNotionClientError", ({ enumerable: true, get: function () { return errors_1.isNotionClientError; } }));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -10024,7 +10023,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("assert");
+module.exports = require("assert");
 
 /***/ }),
 
@@ -10032,7 +10031,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("assert");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("events");
+module.exports = require("events");
 
 /***/ }),
 
@@ -10040,7 +10039,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("events");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("fs");
+module.exports = require("fs");
 
 /***/ }),
 
@@ -10048,7 +10047,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("fs");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("http");
+module.exports = require("http");
 
 /***/ }),
 
@@ -10056,7 +10055,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("http");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("https");
+module.exports = require("https");
 
 /***/ }),
 
@@ -10064,7 +10063,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("https");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("net");
+module.exports = require("net");
 
 /***/ }),
 
@@ -10072,7 +10071,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("net");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("os");
+module.exports = require("os");
 
 /***/ }),
 
@@ -10080,7 +10079,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("os");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("path");
+module.exports = require("path");
 
 /***/ }),
 
@@ -10088,7 +10087,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("path");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("stream");
+module.exports = require("stream");
 
 /***/ }),
 
@@ -10096,7 +10095,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("stream");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("tls");
+module.exports = require("tls");
 
 /***/ }),
 
@@ -10104,7 +10103,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("tls");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("url");
+module.exports = require("url");
 
 /***/ }),
 
@@ -10112,7 +10111,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("url");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("util");
+module.exports = require("util");
 
 /***/ }),
 
@@ -10120,69 +10119,61 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("util");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("zlib");
+module.exports = require("zlib");
 
 /***/ })
 
-/******/ });
+/******/ 	});
 /************************************************************************/
-/******/ // The module cache
-/******/ var __webpack_module_cache__ = {};
-/******/ 
-/******/ // The require function
-/******/ function __nccwpck_require__(moduleId) {
-/******/ 	// Check if module is in cache
-/******/ 	var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 	if (cachedModule !== undefined) {
-/******/ 		return cachedModule.exports;
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __nccwpck_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		var threw = true;
+/******/ 		try {
+/******/ 			__webpack_modules__[moduleId].call(module.exports, module, module.exports, __nccwpck_require__);
+/******/ 			threw = false;
+/******/ 		} finally {
+/******/ 			if(threw) delete __webpack_module_cache__[moduleId];
+/******/ 		}
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
 /******/ 	}
-/******/ 	// Create a new module (and put it into the cache)
-/******/ 	var module = __webpack_module_cache__[moduleId] = {
-/******/ 		// no module.id needed
-/******/ 		// no module.loaded needed
-/******/ 		exports: {}
-/******/ 	};
-/******/ 
-/******/ 	// Execute the module function
-/******/ 	var threw = true;
-/******/ 	try {
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __nccwpck_require__);
-/******/ 		threw = false;
-/******/ 	} finally {
-/******/ 		if(threw) delete __webpack_module_cache__[moduleId];
-/******/ 	}
-/******/ 
-/******/ 	// Return the exports of the module
-/******/ 	return module.exports;
-/******/ }
-/******/ 
+/******/ 	
 /************************************************************************/
-/******/ /* webpack/runtime/compat */
-/******/ 
-/******/ if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = new URL('.', import.meta.url).pathname.slice(import.meta.url.match(/^file:\/\/\/\w:/) ? 1 : 0, -1) + "/";
-/******/ 
+/******/ 	/* webpack/runtime/compat */
+/******/ 	
+/******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
+/******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(6333);
-/* harmony import */ var btoa__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(4328);
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(1358);
-/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_3__ = __nccwpck_require__(9294);
-/* harmony import */ var dotenv__WEBPACK_IMPORTED_MODULE_4__ = __nccwpck_require__(9546);
-/* harmony import */ var _notionhq_client__WEBPACK_IMPORTED_MODULE_5__ = __nccwpck_require__(6643);
+const axios = __nccwpck_require__(6333);
+const btoa = __nccwpck_require__(4328);
+const core = __nccwpck_require__(1358);
+const github = __nccwpck_require__(9294);
+const { Client } = __nccwpck_require__(6643);
 
-
-
-
-
-
-
-dotenv__WEBPACK_IMPORTED_MODULE_4__.config();
+__nccwpck_require__(9546).config();
 
 const getGitHubRequestHeaders = (username, accessToken) => ({
-  headers: { Authorization: `Basic ${btoa__WEBPACK_IMPORTED_MODULE_1__(`${username}:${accessToken}`)}` },
+  headers: { Authorization: `Basic ${btoa(`${username}:${accessToken}`)}` },
 });
 
 const updateNotionStory = async (
@@ -10191,7 +10182,7 @@ const updateNotionStory = async (
   propertyName,
   value
 ) => {
-  const notion = new _notionhq_client__WEBPACK_IMPORTED_MODULE_5__/* .Client */ .KU({ auth: notionKey });
+  const notion = new Client({ auth: notionKey });
   await notion.pages.update({
     page_id: notionPageId,
     properties: {
@@ -10216,7 +10207,7 @@ const extractFirstNotionPageId = (prDescription) => {
 };
 
 const fetchPRDescription = async (prURL, username, accessToken) => {
-  const response = await axios__WEBPACK_IMPORTED_MODULE_0__.get(
+  const response = await axios.get(
     prURL,
     getGitHubRequestHeaders(username, accessToken)
   );
@@ -10231,7 +10222,7 @@ const fetchPRURL = async (
   repoOwner,
   repoName
 ) => {
-  const response = await axios__WEBPACK_IMPORTED_MODULE_0__.get(
+  const response = await axios.get(
     `https://api.github.com/search/issues?q=hash:${commitHash}`,
     getGitHubRequestHeaders(username, accessToken)
   );
@@ -10261,14 +10252,14 @@ const getConfig = () => {
     };
   }
   return {
-    commitHash: _actions_github__WEBPACK_IMPORTED_MODULE_3__.context.sha,
-    repoOwner: _actions_github__WEBPACK_IMPORTED_MODULE_3__.context.repo.owner,
-    repoName: _actions_github__WEBPACK_IMPORTED_MODULE_3__.context.repo.repo,
-    username: _actions_core__WEBPACK_IMPORTED_MODULE_2__.getInput("gh-username"),
-    accessToken: _actions_core__WEBPACK_IMPORTED_MODULE_2__.getInput("gh-token"),
-    notionKey: _actions_core__WEBPACK_IMPORTED_MODULE_2__.getInput("notion-key"),
-    notionPropertyName: _actions_core__WEBPACK_IMPORTED_MODULE_2__.getInput("notion-property-name"),
-    notionUpdateValue: _actions_core__WEBPACK_IMPORTED_MODULE_2__.getInput("notion-update-value"),
+    commitHash: github.context.sha,
+    repoOwner: github.context.repo.owner,
+    repoName: github.context.repo.repo,
+    username: core.getInput("gh-username"),
+    accessToken: core.getInput("gh-token"),
+    notionKey: core.getInput("notion-key"),
+    notionPropertyName: core.getInput("notion-property-name"),
+    notionUpdateValue: core.getInput("notion-update-value"),
   };
 };
 
@@ -10295,14 +10286,14 @@ const run = async () => {
     );
     prDescription = await fetchPRDescription(prURL, username, accessToken);
   } catch (error) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_2__.setFailed(
+    core.setFailed(
       `Error fetch PR description with hash ${commitHash}: ${error}`
     );
   }
 
   const notionPageId = extractFirstNotionPageId(prDescription);
   if (notionPageId === null) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_2__.setFailed("No Notion URL found.");
+    core.setFailed("No Notion URL found.");
   }
 
   try {
@@ -10313,7 +10304,7 @@ const run = async () => {
       notionUpdateValue
     );
   } catch (error) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_2__.setFailed(`Error updating Notion page ${notionPageId}: ${error}`);
+    core.setFailed(`Error updating Notion page ${notionPageId}: ${error}`);
   }
 
   console.info(
@@ -10325,3 +10316,6 @@ run();
 
 })();
 
+module.exports = __webpack_exports__;
+/******/ })()
+;

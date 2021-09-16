@@ -1,11 +1,10 @@
-import axios from "axios";
-import btoa from "btoa";
-import core from "@actions/core";
-import github from "@actions/github";
-import dotenv from "dotenv";
-import { Client } from "@notionhq/client";
+const axios = require("axios");
+const btoa = require("btoa");
+const core = require("@actions/core");
+const github = require("@actions/github");
+const { Client } = require("@notionhq/client");
 
-dotenv.config();
+require("dotenv").config();
 
 const getGitHubRequestHeaders = (username, accessToken) => ({
   headers: { Authorization: `Basic ${btoa(`${username}:${accessToken}`)}` },

@@ -83,10 +83,10 @@ const getConfig = () => {
     notionKey: isOffline ? process.env.NOTION_KEY : core.getInput("notion-key"),
     notionPropertyName: isOffline
       ? process.env.NOTION_PROPERTY_NAME
-      : core.getInput("property-name"),
+      : core.getInput("notion-property-name"),
     notionUpdateValue: isOffline
       ? process.env.NOTION_UPDATE_VALUE
-      : core.getInput("update-value"),
+      : core.getInput("notion-update-value"),
   };
 };
 
@@ -102,6 +102,7 @@ const run = async () => {
     notionUpdateValue,
   } = getConfig();
 
+  console.log(github.context.payload);
   let prDescription = "";
   try {
     const prURL = await fetchPRURL(

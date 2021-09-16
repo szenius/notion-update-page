@@ -4,10 +4,10 @@ inputs:
   notion-key: # id of input
     description: "Notion Integration Secret Key"
     required: true
-  property-name: # id of input
+  notion-property-name: # id of input
     description: "Page property to be updated"
     required: true
-  update-value: # id of input
+  notion-update-value: # id of input
     description: "New value for page property"
     required: true
 runs:

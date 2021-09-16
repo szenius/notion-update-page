@@ -1,13 +1,13 @@
-# Notion on commit
+# Notion Update Page
 
-![Test Action](https://github.com/szenius/notion-on-commit/workflows/.github/workflows/action.yml/badge.svg)
+![Test Action](https://github.com/szenius/notion-update-page/workflows/.github/workflows/action.yml/badge.svg)
 
 GitHub action to update a Notion page property on commit created by merging a Pull Request.
 
 ## Example Usage
 
 ```yml
-uses: szenius/notion-on-commit@v1.0
+uses: szenius/notion-update-page@v1.0
 with:
   gh-username: "username"
   gh-token: ${{ secrets.GH_ACCESS_TOKEN }}

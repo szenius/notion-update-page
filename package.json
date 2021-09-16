@@ -1,21 +1,22 @@
 {
-  "name": "notion-on-commit",
-  "description": "POC for updating a Notion database item on every Github commit. The goal is to link up each commit to a Notion database item.",
+  "name": "notion-update-page",
+  "description": "Updating Notion page on merge of pull request",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=offline node index.js"
+    "start": "NODE_ENV=offline node index.js",
+    "build": "ncc build index.js --license licenses.txt"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/szenius/notion-on-commit.git"
+    "url": "git+https://github.com/szenius/notion-update-page.git"
   },
   "author": "Sze Ying",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/szenius/notion-on-commit/issues"
+    "url": "https://github.com/szenius/notion-update-page/issues"
   },
-  "homepage": "https://github.com/szenius/notion-on-commit#readme",
+  "homepage": "https://github.com/szenius/notion-update-page#readme",
   "dependencies": {
     "@actions/core": "^1.5.0",
     "@actions/github": "^5.0.0",

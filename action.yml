@@ -1,13 +1,19 @@
 name: "Notion On Commit"
 description: "Update page property on commit"
 inputs:
-  notion-key: # id of input
+  gh-username:
+    description: "GitHub username of user who has access to the repository"
+    required: true
+  gh-token:
+    description: "GitHub access token of user who has access to the repository"
+    required: true
+  notion-key:
     description: "Notion Integration Secret Key"
     required: true
-  notion-property-name: # id of input
+  notion-property-name:
     description: "Page property to be updated"
     required: true
-  notion-update-value: # id of input
+  notion-update-value:
     description: "New value for page property"
     required: true
 runs:

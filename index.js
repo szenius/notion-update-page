@@ -74,19 +74,27 @@ const fetchPRURL = async (
 
 const getConfig = () => {
   const isOffline = process.env.NODE_ENV === "offline";
+  if (isOffline) {
+    return {
+      commitHash: process.env.COMMIT_HASH,
+      repoOwner: process.env.REPO_OWNER,
+      repoName: process.env.REPO_NAME,
+      username: process.env.GH_USERNAME,
+      accessToken: process.env.GH_ACCESS_TOKEN,
+      notionKey: process.env.NOTION_KEY,
+      notionPropertyName: process.env.NOTION_PROPERTY_NAME,
+      notionUpdateValue: process.env.NOTION_UPDATE_VALUE,
+    };
+  }
   return {
-    commitHash: isOffline ? process.env.COMMIT_HASH : github.context.sha,
-    repoOwner: isOffline ? process.env.REPO_OWNER : github.context.repo.owner,
-    repoName: isOffline ? process.env.REPO_NAME : github.context.repo.repo,
-    username: process.env.GH_USERNAME,
-    accessToken: process.env.GH_ACCESS_TOKEN,
-    notionKey: isOffline ? process.env.NOTION_KEY : core.getInput("notion-key"),
-    notionPropertyName: isOffline
-      ? process.env.NOTION_PROPERTY_NAME
-      : core.getInput("notion-property-name"),
-    notionUpdateValue: isOffline
-      ? process.env.NOTION_UPDATE_VALUE
-      : core.getInput("notion-update-value"),
+    commitHash: github.context.sha,
+    repoOwner: github.context.repo.owner,
+    repoName: github.context.repo.repo,
+    username: core.getInput("gh-username"),
+    accessToken: core.getInput("gh-token"),
+    notionKey: core.getInput("notion-key"),
+    notionPropertyName: core.getInput("notion-property-name"),
+    notionUpdateValue: core.getInput("notion-update-value"),
   };
 };
 
@@ -102,7 +110,6 @@ const run = async () => {
     notionUpdateValue,
   } = getConfig();
 
-  console.log(github.context.payload);
   let prDescription = "";
   try {
     const prURL = await fetchPRURL(

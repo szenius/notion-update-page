@@ -35,6 +35,7 @@ jobs:
           WITH_V: false
           RELEASE_BRANCHES: master
           DEFAULT_BUMP: patch
+          INITIAL_VERSION: 1.1.2
       - name: Update Notion property
         uses: ./
         with:

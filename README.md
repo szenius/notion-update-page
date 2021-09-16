@@ -1,7 +1,5 @@
 # Notion Update Page
 
-![Test Action](https://github.com/szenius/notion-update-page/workflows/.github/workflows/action.yml/badge.svg)
-
 GitHub action to update a Notion page property on commit created by merging a Pull Request.
 
 Originally built for updating version tag in Notion page on commit. See [the test workflow](.github/workflows/on_master.yml) as an example.

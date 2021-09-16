@@ -21,3 +21,5 @@ with:
 - `notion-key`: Notion Integration Secret Key
 - `notion-property-name`: Notion Page property to be updated
 - `notion-update-value`: New value for Notion page property
+
+The [test workflow](.github/workflows/on_master.yml) is linked to [this Notion database](https://foregoing-cub-523.notion.site/4964f7c754f54c41abce56028d990ac6?v=9ece5b75d4914584b43685bcbc6f3d1c).

@@ -29,7 +29,7 @@ const updateNotionStory = async (
 
 const extractFirstNotionPageId = (prDescription) => {
   const notionURLs = prDescription.match(
-    /(https?:\/\/)?(www\.)?notion\.so\/([A-Za-z0-9\-]+)/gi
+    /(https?:\/\/)?(www\.)?notion\.so\/([A-Za-z0-9\-\/]+)/gi
   );
   if (notionURLs === null || notionURLs.length === 0) {
     return null;

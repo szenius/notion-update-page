@@ -17,11 +17,17 @@ const updateNotionStory = async (
   value
 ) => {
   const notion = new Client({ auth: notionKey });
+
+  const pageProperties = await notion.pages.retrieve({page_id: notionPageId});
+  const { text: currentValue } = pageProperties.properties[propertyName][0];
+
+  if (!!currentValue) currentValue += ","
+
   await notion.pages.update({
     page_id: notionPageId,
     properties: {
       [propertyName]: {
-        rich_text: [{ type: "text", text: { content: value } }],
+        rich_text: [{ type: "text", text: { content: `${currentValue}${value}` } }],
       },
     },
   });

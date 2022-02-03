@@ -2,7 +2,7 @@
 
 ![on_master](https://github.com/szenius/notion-update-page/actions/workflows/on_master.yml/badge.svg)
 
-GitHub action to update a Notion page property on commit created by merging a Pull Request.
+GitHub action to update a Notion page property on commit created by merging a Pull Request. Currently works for page property of type text.
 
 Originally built for updating version tag in Notion page on commit. See [the test workflow](.github/workflows/on_master.yml) as an example.
 

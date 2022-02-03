@@ -17,14 +17,32 @@ const updateNotionStory = async (
   value
 ) => {
   const notion = new Client({ auth: notionKey });
-  await notion.pages.update({
-    page_id: notionPageId,
-    properties: {
-      [propertyName]: {
-        rich_text: [{ type: "text", text: { content: value } }],
+
+  const pageDetails = await notion.pages.retrieve({ page_id: notionPageId });
+  
+  const existingPropertyValues = pageDetails.properties[propertyName].rich_text;
+
+  if (existingPropertyValues.length === 0) {
+    await notion.pages.update({
+      page_id: notionPageId,
+      properties: {
+        [propertyName]: {
+          rich_text: [{ type: "text", text: { content: value } }],
+        },
       },
-    },
-  });
+    });
+  } else {
+    const existingValue = existingPropertyValues[0].plain_text;
+    const combinedValue = `${existingValue},${value}`;
+    await notion.pages.update({
+      page_id: notionPageId,
+      properties: {
+        [propertyName]: {
+          rich_text: [{ type: "text", text: { content: combinedValue } }],
+        },
+      },
+    });
+  }
 };
 
 const extractFirstNotionPageId = (prDescription) => {

@@ -19,8 +19,8 @@ jobs:
       - name: Commit dist files
         continue-on-error: true
         run: |
-          git config --local user.email ${{ github.event.push.head_commit.author.name }}
-          git config --local user.name ${{ github.event.push.head_commit.author.name }}
+          git config --local user.email "rote-archery0x@icloud.com"
+          git config --local user.name "ilhaoni"
           git add ./dist
           git commit -m "build: update dist files"
       - name: Push changes
@@ -41,7 +41,7 @@ jobs:
       - name: Update Notion property
         uses: ./
         with:
-          gh-username: ${{ github.event.push.head_commit.author.name }}
+          gh-username: "ilhaoni"
           gh-token: ${{ secrets.GH_ACCESS_TOKEN }}
           notion-key: ${{ secrets.NOTION_KEY }}
           notion-property-name: "Version Tag"

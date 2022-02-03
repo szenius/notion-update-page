@@ -6,6 +6,11 @@ GitHub action to update a Notion page property on commit created by merging a Pu
 
 Originally built for updating version tag in Notion page on commit. See [the test workflow](.github/workflows/on_master.yml) as an example.
 
+Notes:
+
+- Only able to work on a property that is of type `text`
+- Current appending logic assumes that no formatting is done in the property, i.e. all plain text only
+
 ## Example Usage
 
 ```yml

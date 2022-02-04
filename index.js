@@ -104,6 +104,7 @@ const getConfig = () => {
       accessToken: process.env.GH_ACCESS_TOKEN,
       notionKey: process.env.NOTION_KEY,
       notionPropertyName: process.env.NOTION_PROPERTY_NAME,
+      notionPropertyType: process.env.NOTION_PROPERTY_TYPE,
       notionUpdateValue: process.env.NOTION_UPDATE_VALUE,
     };
   }
@@ -115,11 +116,14 @@ const getConfig = () => {
     accessToken: core.getInput("gh-token"),
     notionKey: core.getInput("notion-key"),
     notionPropertyName: core.getInput("notion-property-name"),
+    notionPropertyType: core.getInput("notion-property-type"),
     notionUpdateValue: core.getInput("notion-update-value"),
   };
 };
 
 const run = async () => {
+  const supportedPropertyTypes = ["rich_text", "multi_select"];
+
   const {
     commitHash,
     repoOwner,
@@ -128,8 +132,15 @@ const run = async () => {
     accessToken,
     notionKey,
     notionPropertyName,
+    notionPropertyType,
     notionUpdateValue,
   } = getConfig();
+
+  if (!(notionPropertyType in supportedPropertyTypes)) {
+    core.setFailed(
+      `Type of Notion Page property ${notionPropertyType} is not supported.`
+    );
+  }
 
   let prDescription = "";
   try {

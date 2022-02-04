@@ -16,6 +16,9 @@ inputs:
   notion-property-name:
     description: "Notion Page property to be updated"
     required: true
+  notion-property-type:
+    description: "Type of Notion Page property"
+    required: false
   notion-update-value:
     description: "New value for Notion page property"
     required: true

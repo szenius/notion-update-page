@@ -6,7 +6,7 @@ const { Client } = require("@notionhq/client");
 
 require("dotenv").config();
 
-const supportedPropertyTypes = {"rich_text": "rich_text", "multi_select": "multi_select"};
+const SUPPORTED_PROPERTY_TYPES = {"RICH_TEXT": "rich_text", "MULTI_SELECT": "multi_select"};
 
 const getGitHubRequestHeaders = (username, accessToken) => ({
   headers: { Authorization: `Basic ${btoa(`${username}:${accessToken}`)}` },
@@ -23,7 +23,7 @@ const updateNotionStory = async (
 
   const pageDetails = await notion.pages.retrieve({ page_id: notionPageId });
 
-  if (propertyType === supportedPropertyTypes.rich_text) {
+  if (propertyType === SUPPORTED_PROPERTY_TYPES.RICH_TEXT) {
     const existingPropertyValues = pageDetails.properties[propertyName].rich_text;
   
     if (existingPropertyValues.length === 0) {
@@ -49,7 +49,7 @@ const updateNotionStory = async (
     }
   }
 
-  if (propertyType === supportedPropertyTypes.multi_select) {
+  if (propertyType === SUPPORTED_PROPERTY_TYPES.MULTI_SELECT) {
     const existingPropertyValues = pageDetails.properties[propertyName].multi_select;
     existingPropertyValues.push({"name": value})
 
@@ -154,7 +154,7 @@ const run = async () => {
     notionUpdateValue,
   } = getConfig();
 
-  if (!(notionPropertyType in supportedPropertyTypes)) {
+  if (!(notionPropertyType in SUPPORTED_PROPERTY_TYPES)) {
     core.setFailed(
       `Type of Notion Page property ${notionPropertyType} is not supported.`
     );
@@ -194,7 +194,7 @@ const run = async () => {
       notionPageId,
       notionPropertyName,
       notionUpdateValue,
-      notionPropertyType || supportedPropertyTypes.rich_text
+      notionPropertyType || SUPPORTED_PROPERTY_TYPES.RICH_TEXT
     );
   } catch (error) {
     core.setFailed(`Error updating Notion page ${notionPageId}: ${error}`);

@@ -112,7 +112,7 @@ const getConfig = () => {
       accessToken: process.env.GH_ACCESS_TOKEN,
       notionKey: process.env.NOTION_KEY,
       notionPropertyName: process.env.NOTION_PROPERTY_NAME,
-      notionPropertyType: process.env.NOTION_PROPERTY_TYPE,
+      notionPropertyType: process.env.NOTION_PROPERTY_TYPE || SUPPORTED_PROPERTY_TYPES.RICH_TEXT,
       notionUpdateValue: process.env.NOTION_UPDATE_VALUE,
     };
   }
@@ -124,7 +124,7 @@ const getConfig = () => {
     accessToken: core.getInput("gh-token"),
     notionKey: core.getInput("notion-key"),
     notionPropertyName: core.getInput("notion-property-name"),
-    notionPropertyType: core.getInput("notion-property-type"),
+    notionPropertyType: core.getInput("notion-property-type") || SUPPORTED_PROPERTY_TYPES.RICH_TEXT,
     notionUpdateValue: core.getInput("notion-update-value"),
   };
 };
@@ -182,7 +182,7 @@ const run = async () => {
       notionPageId,
       notionPropertyName,
       notionUpdateValue,
-      notionPropertyType || SUPPORTED_PROPERTY_TYPES.RICH_TEXT
+      notionPropertyType
     );
   } catch (error) {
     core.setFailed(`Error updating Notion page ${notionPageId}: ${error}`);

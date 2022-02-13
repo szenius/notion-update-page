@@ -142,7 +142,7 @@ const run = async () => {
     notionUpdateValue,
   } = getConfig();
 
-  if (!(notionPropertyType in SUPPORTED_PROPERTY_TYPES)) {
+  if (!(SUPPORTED_PROPERTY_TYPES.hasOwnProperty(notionPropertyType.toUpperCase()))) {
     core.setFailed(
       `Type of Notion Page property ${notionPropertyType} is not supported.`
     );

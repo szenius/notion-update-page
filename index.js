@@ -24,28 +24,28 @@ const updateNotionStory = async (
   const pageDetails = await notion.pages.retrieve({ page_id: notionPageId });
 
   if (propertyType === SUPPORTED_PROPERTY_TYPES.RICH_TEXT) {
-    const existingPropertyValues = pageDetails.properties[propertyName].rich_text;
-    existingPropertyValues.push(value);
+    const richTextValues = pageDetails.properties[propertyName].rich_text;
+    richTextValues.push(value);
 
     await notion.pages.update({
       page_id: notionPageId,
       properties: {
         [propertyName]: {
-          rich_text: [{ type: "text", text: { content: existingPropertyValues.join(',') } }],
+          rich_text: [{ type: "text", text: { content: richTextValues.join(',') } }],
         },
       },
     });
   }
 
   if (propertyType === SUPPORTED_PROPERTY_TYPES.MULTI_SELECT) {
-    const existingPropertyValues = pageDetails.properties[propertyName].multi_select;
-    existingPropertyValues.push({"name": value})
+    const selectValues = pageDetails.properties[propertyName].multi_select;
+    selectValues.push({"name": value});
 
     await notion.pages.update({
       page_id: notionPageId,
       properties: {
         [propertyName]: {
-          multi_select: existingPropertyValues,
+          multi_select: selectValues,
         },
       },
     });

@@ -25,28 +25,16 @@ const updateNotionStory = async (
 
   if (propertyType === SUPPORTED_PROPERTY_TYPES.RICH_TEXT) {
     const existingPropertyValues = pageDetails.properties[propertyName].rich_text;
-  
-    if (existingPropertyValues.length === 0) {
-      await notion.pages.update({
-        page_id: notionPageId,
-        properties: {
-          [propertyName]: {
-            rich_text: [{ type: "text", text: { content: value } }],
-          },
+    existingPropertyValues.push(value);
+
+    await notion.pages.update({
+      page_id: notionPageId,
+      properties: {
+        [propertyName]: {
+          rich_text: [{ type: "text", text: { content: existingPropertyValues.join(',') } }],
         },
-      });
-    } else {
-      const existingValue = existingPropertyValues[0].plain_text;
-      const combinedValue = `${existingValue},${value}`;
-      await notion.pages.update({
-        page_id: notionPageId,
-        properties: {
-          [propertyName]: {
-            rich_text: [{ type: "text", text: { content: combinedValue } }],
-          },
-        },
-      });
-    }
+      },
+    });
   }
 
   if (propertyType === SUPPORTED_PROPERTY_TYPES.MULTI_SELECT) {

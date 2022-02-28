@@ -12,6 +12,25 @@ const getGitHubRequestHeaders = (username, accessToken) => ({
   headers: { Authorization: `Basic ${btoa(`${username}:${accessToken}`)}` },
 });
 
+const generateUpdateProps = (propertyType, value, pageDetails) => {
+  if (propertyType === SUPPORTED_PROPERTY_TYPES.RICH_TEXT) {
+    const richTextValues = pageDetails.properties[propertyName].rich_text;
+    richTextValues.push(value);
+
+    return {
+      rich_text: [{ type: "text", text: { content: richTextValues.join(',') } }],
+    };
+  }
+  else if (propertyType === SUPPORTED_PROPERTY_TYPES.MULTI_SELECT) {
+    const selectValues = pageDetails.properties[propertyName].multi_select;
+    selectValues.push({"name": value});
+
+    return {
+      multi_select: selectValues,
+    };
+  }
+}
+
 const updateNotionStory = async (
   notionKey,
   notionPageId,
@@ -23,34 +42,14 @@ const updateNotionStory = async (
 
   const pageDetails = await notion.pages.retrieve({ page_id: notionPageId });
 
-  if (propertyType === SUPPORTED_PROPERTY_TYPES.RICH_TEXT) {
-    const richTextValues = pageDetails.properties[propertyName].rich_text;
-    richTextValues.push(value);
+  const updateProps = generateUpdateProps(propertyType, value, pageDetails);
 
-    await notion.pages.update({
-      page_id: notionPageId,
-      properties: {
-        [propertyName]: {
-          rich_text: [{ type: "text", text: { content: richTextValues.join(',') } }],
-        },
-      },
-    });
-  }
-
-  if (propertyType === SUPPORTED_PROPERTY_TYPES.MULTI_SELECT) {
-    const selectValues = pageDetails.properties[propertyName].multi_select;
-    selectValues.push({"name": value});
-
-    await notion.pages.update({
-      page_id: notionPageId,
-      properties: {
-        [propertyName]: {
-          multi_select: selectValues,
-        },
-      },
-    });
-  }
-  
+  await notion.pages.update({
+    page_id: notionPageId,
+    properties: {
+      [propertyName]: updateProps,
+    },
+  });
 };
 
 const extractFirstNotionPageId = (prDescription) => {

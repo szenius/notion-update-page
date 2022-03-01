@@ -10172,43 +10172,69 @@ const { Client } = __nccwpck_require__(324);
 
 __nccwpck_require__(2437).config();
 
-const SUPPORTED_PROPERTY_TYPES = {"RICH_TEXT": "rich_text", "MULTI_SELECT": "multi_select"};
+const SUPPORTED_PROPERTY_TYPES = {
+  RICH_TEXT: "rich_text",
+  MULTI_SELECT: "multi_select",
+};
+
+const SUPPORTED_EXISTING_VALUE_ACTIONS = {
+  OVERWRITE: "overwrite",
+  APPEND: "append",
+};
 
 const getGitHubRequestHeaders = (username, accessToken) => ({
   headers: { Authorization: `Basic ${btoa(`${username}:${accessToken}`)}` },
 });
 
-const generateUpdateProps = (propertyType, propertyName, newValue, pageDetails) => {
-  if (propertyType === SUPPORTED_PROPERTY_TYPES.RICH_TEXT) {
-    const richTextValues = pageDetails.properties[propertyName].rich_text;
-    richTextValues.push(newValue);
-
-    return {
-      rich_text: [{ type: "text", text: { content: richTextValues.join(',') } }],
-    };
-  }
-  else if (propertyType === SUPPORTED_PROPERTY_TYPES.MULTI_SELECT) {
+const generateUpdateProps = (
+  propertyType,
+  existingValueAction,
+  propertyName,
+  newValue,
+  pageDetails
+) => {
+  if (propertyType === SUPPORTED_PROPERTY_TYPES.MULTI_SELECT) {
     const selectValues = pageDetails.properties[propertyName].multi_select;
-    selectValues.push({"name": newValue});
+    selectValues.push({ name: newValue });
 
     return {
       multi_select: selectValues,
     };
   }
-}
+
+  if (existingValueAction === SUPPORTED_EXISTING_VALUE_ACTIONS.OVERWRITE) {
+    return {
+      rich_text: [{ type: "text", text: { content: newValue } }],
+    };
+  }
+
+  const richTextValues = pageDetails.properties[propertyName].rich_text;
+  richTextValues.push(newValue);
+
+  return {
+    rich_text: [{ type: "text", text: { content: richTextValues.join(",") } }],
+  };
+};
 
 const updateNotionStory = async (
   notionKey,
   notionPageId,
   propertyName,
   value,
-  propertyType
+  propertyType,
+  existingValueAction
 ) => {
   const notion = new Client({ auth: notionKey });
 
   const pageDetails = await notion.pages.retrieve({ page_id: notionPageId });
 
-  const updateProps = generateUpdateProps(propertyType, propertyName, value, pageDetails);
+  const updateProps = generateUpdateProps(
+    propertyType,
+    existingValueAction,
+    propertyName,
+    value,
+    pageDetails
+  );
 
   await notion.pages.update({
     page_id: notionPageId,
@@ -10277,8 +10303,12 @@ const getConfig = () => {
       accessToken: process.env.GH_ACCESS_TOKEN,
       notionKey: process.env.NOTION_KEY,
       notionPropertyName: process.env.NOTION_PROPERTY_NAME,
-      notionPropertyType: process.env.NOTION_PROPERTY_TYPE || SUPPORTED_PROPERTY_TYPES.RICH_TEXT,
+      notionPropertyType:
+        process.env.NOTION_PROPERTY_TYPE || SUPPORTED_PROPERTY_TYPES.RICH_TEXT,
       notionUpdateValue: process.env.NOTION_UPDATE_VALUE,
+      existingValueAction:
+        process.env.EXISTING_VALUE ||
+        SUPPORTED_EXISTING_VALUE_ACTIONS.OVERWRITE,
     };
   }
   return {
@@ -10289,8 +10319,13 @@ const getConfig = () => {
     accessToken: core.getInput("gh-token"),
     notionKey: core.getInput("notion-key"),
     notionPropertyName: core.getInput("notion-property-name"),
-    notionPropertyType: core.getInput("notion-property-type") || SUPPORTED_PROPERTY_TYPES.RICH_TEXT,
+    notionPropertyType:
+      core.getInput("notion-property-type") ||
+      SUPPORTED_PROPERTY_TYPES.RICH_TEXT,
     notionUpdateValue: core.getInput("notion-update-value"),
+    existingValueAction:
+      core.getInput("existing-value") ||
+      SUPPORTED_EXISTING_VALUE_ACTIONS.OVERWRITE,
   };
 };
 
@@ -10305,9 +10340,12 @@ const run = async () => {
     notionPropertyName,
     notionPropertyType,
     notionUpdateValue,
+    existingValueAction,
   } = getConfig();
 
-  if (!(SUPPORTED_PROPERTY_TYPES.hasOwnProperty(notionPropertyType.toUpperCase()))) {
+  if (
+    !SUPPORTED_PROPERTY_TYPES.hasOwnProperty(notionPropertyType.toUpperCase())
+  ) {
     core.setFailed(
       `Type of Notion Page property ${notionPropertyType} is not supported.`
     );
@@ -10347,7 +10385,8 @@ const run = async () => {
       notionPageId,
       notionPropertyName,
       notionUpdateValue,
-      notionPropertyType
+      notionPropertyType,
+      existingValueAction
     );
   } catch (error) {
     core.setFailed(`Error updating Notion page ${notionPageId}: ${error}`);

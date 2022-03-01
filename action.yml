@@ -20,7 +20,7 @@ inputs:
     description: "New value for Notion page property"
     required: true
   existing-value:
-    description: "What to do if the field to be updated already has existing values"
+    description: "What to do with existing value in field to be updated"
     required: false
     default: "overwrite"
   notion-property-type:

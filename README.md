@@ -25,4 +25,5 @@ with:
 - `notion-property-name`: Notion Page property to be updated
 - `notion-update-value`: New value for Notion page property
 - `notion-property-type` (optional): Type of Notion Page property. Can be `rich_text` or `multi_select`. Defaults to `rich_text`.
-  The [test workflow](.github/workflows/on_master.yml) is linked to [this Notion database](https://szenius.notion.site/4964f7c754f54c41abce56028d990ac6?v=9ece5b75d4914584b43685bcbc6f3d1c).
+
+The [test workflow](.github/workflows/on_master.yml) is linked to [this Notion database](https://szenius.notion.site/4964f7c754f54c41abce56028d990ac6?v=9ece5b75d4914584b43685bcbc6f3d1c).

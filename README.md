@@ -9,14 +9,15 @@ Originally built for updating version tag in Notion page on commit. See [the tes
 ## Example Usage
 
 ```yml
-uses: szenius/notion-update-page@1.1.11
+uses: szenius/notion-update-page@1.1.12
 with:
   gh-username: "username"
   gh-token: ${{ secrets.GH_ACCESS_TOKEN }}
   notion-key: ${{ secrets.NOTION_KEY }}
   notion-property-name: "Status"
-  notion-property-name: "multi_select"
   notion-update-value: "Merged"
+  notion-property-type: "rich_text"
+  existing-value: "overwrite"
 ```
 
 - `gh-username`: GitHub username of user who has access to the repository

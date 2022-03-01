@@ -9,7 +9,7 @@ Originally built for updating version tag in Notion page on commit. See [the tes
 ## Example Usage
 
 ```yml
-uses: szenius/notion-update-page@1.1.10
+uses: szenius/notion-update-page@1.1.11
 with:
   gh-username: "username"
   gh-token: ${{ secrets.GH_ACCESS_TOKEN }}
@@ -25,5 +25,8 @@ with:
 - `notion-property-name`: Notion Page property to be updated
 - `notion-update-value`: New value for Notion page property
 - `notion-property-type` (optional): Type of Notion Page property. Can be `rich_text` or `multi_select`. Defaults to `rich_text`.
+- `existing-value` (optional): What to do with existing value in field to be updated. Can be `append` or `overwrite`. Defaults to
+  - `overwrite` if `notion-property-type` is `multi_select`
+  - `append` if `notion-property-type` is `rich_text`
 
 The [test workflow](.github/workflows/on_master.yml) is linked to [this Notion database](https://szenius.notion.site/4964f7c754f54c41abce56028d990ac6?v=9ece5b75d4914584b43685bcbc6f3d1c).

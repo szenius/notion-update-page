@@ -1,5 +1,5 @@
-name: "Notion On Commit"
-description: "Update page property on commit"
+name: "Notion Update Page"
+description: "Update property of Notion page on commit"
 branding:
   icon: book-open
   color: white

@@ -9,7 +9,7 @@ Originally built for updating version tag in Notion page on commit. See [the tes
 ## Example Usage
 
 ```yml
-uses: szenius/notion-update-page@1.1.13
+uses: szenius/notion-update-page@2.0.0
 with:
   gh-username: "username"
   gh-token: ${{ secrets.GH_ACCESS_TOKEN }}

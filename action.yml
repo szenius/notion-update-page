@@ -28,5 +28,5 @@ inputs:
     required: false
     default: "rich_text"
 runs:
-  using: "node18"
+  using: "node16"
   main: "dist/index.js"
